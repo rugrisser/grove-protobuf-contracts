@@ -1,0 +1,40 @@
+syntax = "proto3";
+package grove.metrics_manager;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.grove.protobuf.metricsmanager";
+option java_outer_classname = "MetricTaskProto";
+
+message MetricTask {
+  string metricId = 1;
+  string metricKey = 2;
+  reserved 3 to 9;
+  optional google.protobuf.Timestamp processFrom = 10;
+  google.protobuf.Timestamp processTo = 11;
+  reserved 12 to 19;
+  Source source = 20;
+  Consumer consumer = 21;
+}
+
+message Source {
+  string link = 1;
+}
+
+message Consumer {
+  string id = 1;
+  ConsumerType type = 2;
+  repeated ConsumerProperty properties = 3;
+}
+
+message ConsumerProperty {
+  string key = 1;
+  string value = 2;
+}
+
+enum ConsumerType {
+  PROMETHEUS = 0;
+  CLICKHOUSE = 1;
+  PROMETHEUS_PUSHGATEWAY = 2;
+}
