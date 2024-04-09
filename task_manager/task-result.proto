@@ -1,0 +1,16 @@
+syntax = "proto3";
+package grove.task_manager;
+
+option java_multiple_files = true;
+option java_package = "org.grove.protobuf.taskmanager";
+option java_outer_classname = "MetricTaskResultProto";
+
+message MetricTaskResult {
+  string metricId = 1;
+  MetricTaskResultStatus status = 2;
+}
+
+enum MetricTaskResultStatus {
+  SUCCESSFUL = 0;
+  FAILED = 1;
+}
